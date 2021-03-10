@@ -10,7 +10,15 @@ public class Board {
         }
     }
 
-    public void print() {
-        System.out.print("1 2 3\n4 5 6\n7 8 9");
+    public String image() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (byte b : grid) {
+            stringBuilder.append(b);
+            if (b % 3 == 0)
+                stringBuilder.append("\n");
+            else
+                stringBuilder.append(" ");
+        }
+        return stringBuilder.toString();
     }
 }
