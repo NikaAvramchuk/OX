@@ -1,18 +1,18 @@
 package com.epam.academy.ox;
 
 public class Board {
-    public byte[] grid;
+    public char[] grid;
 
     public Board(int size) {
-        grid = new byte[size];
-        for(byte i=0; i<size; i++) {
-            grid[i] = (byte) (i+1);
+        grid = new char[size];
+        for(int i=0; i<size; i++) {
+            grid[i] = (char) (i+49);
         }
     }
 
     public String image() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (byte b : grid) {
+        for (char b : grid) {
             stringBuilder.append(b);
             if (b % 3 == 0)
                 stringBuilder.append("\n");
@@ -20,5 +20,9 @@ public class Board {
                 stringBuilder.append(" ");
         }
         return stringBuilder.toString();
+    }
+
+    public void updateGrid(int chosenSlot) {
+        grid[chosenSlot-1] = 'X';
     }
 }
