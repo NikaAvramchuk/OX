@@ -1,9 +1,10 @@
 create the board 3X3 DONE
 get the board image DONE
-create players
-player choose the slot number
-board is updating
+create players DONE
+player choose the slot number DONE
+board is updating DONE
 check if isWinner
 print the board
 Field "grid" should be private
+player can't choose the slot occupied by another player
 
