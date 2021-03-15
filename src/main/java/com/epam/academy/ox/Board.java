@@ -12,9 +12,9 @@ public class Board {
 
     public String image() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (char b : grid) {
-            stringBuilder.append(b);
-            if (b % 3 == 0)
+        for (char c : grid) {
+            stringBuilder.append(c);
+            if (c % 3 == 0)
                 stringBuilder.append("\n");
             else
                 stringBuilder.append(" ");

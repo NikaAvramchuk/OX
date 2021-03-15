@@ -1,10 +1,12 @@
 package com.epam.academy.ox;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.epam.academy.ox.Combination.winningCombinations;
 
 public class Game {
+    private final UI ui;
     private Player[] players;
     private final Player playerX;
     private final Player playerO;
@@ -13,6 +15,7 @@ public class Game {
     private Player winner;
 
     public Game() {
+        ui = new UiImplementation();
         playerX = new Player('X');
         playerO = new Player('O');
         players = new Player[] {playerX,playerO};
@@ -61,14 +64,22 @@ public class Game {
         return checkDraw() || checkWinner()!=null;
     }
 
-    public void game() {
-        System.out.println("Hey there! Welcome to 3X3 Tic Tac Toe game");
-        board.prints();
+    public void play() {
+        welcomeMessage();
         while (!isOver()) {
             int input;
             for(Player player: players) {
-                System.out.printf("%s turn, please choose the slot: ", player);
-                input = scanner.nextInt();
+                ui.showMessage("%s turn, please choose the slot: ", player);
+                try {
+                    input = ui.readNumber();
+                    if (!(input > 0 && input <= 9)) {
+                       ui.showMessage("Invalid input; re-enter slot number:");
+                       continue;
+                    }
+                } catch (InputMismatchException e) {
+                    ui.showMessage( "Invalid input; re-enter slot number:");
+                    continue;
+                }
                 playerActs(player, input);
                 board.prints();
                 if(checkIfPlayerIsWinner()){
@@ -78,16 +89,22 @@ public class Game {
         }
     }
 
+
     private boolean checkIfPlayerIsWinner() {
         winner = checkWinner();
         if(winner!=null) {
-            System.out.printf("%s won! Congratulations!",winner);
+            ui.showMessage("%s won! Congratulations!",winner);
             return true;
         }
         else if(checkDraw()) {
-            System.out.println("There is a draw! Game over");
+            ui.showMessage("There is a draw! Game over");;
             return true;
         }
         return false;
+    }
+
+    public void welcomeMessage () {
+        ui.showMessage("Hey there! Welcome to 3X3 Tic Tac Toe game!%n");
+        board.prints();
     }
 }
