@@ -1,7 +1,5 @@
 package com.epam.academy.ox;
 
-import java.util.Arrays;
-
 import static com.epam.academy.ox.Combination.winningCombinations;
 
 public class Game {
@@ -12,7 +10,7 @@ public class Game {
         StringBuilder result = new StringBuilder();
         for (int[] winningCombination : winningCombinations) {
             for (int i : winningCombination)
-                result.append(board.grid[i]);
+                result.append(board.getValueOnGivenSlot(i));
             if(result.toString().equals("XXX"))
                 return playerX;
             else if(result.toString().equals("OOO"))
@@ -22,4 +20,13 @@ public class Game {
         return null;
     }
 
+    public boolean checkDraw(Board board) {
+        for(int i=0; i<9; i++)
+            if(!board.isOccupied(i))
+                break;
+            else if(i==8)
+                return true;
+
+        return false;
+    }
 }
