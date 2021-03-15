@@ -40,7 +40,7 @@ public class OXTest {
         game.playerActs(playerX,2);
         game.playerActs(playerX,3);
 
-        Player winner = game.checkWinner();
+        boolean winner = game.checkWinner();
 
         assertEquals(winner,playerX);
     }
@@ -52,7 +52,7 @@ public class OXTest {
         game.playerActs(playerO,5);
         game.playerActs(playerO,9);
 
-        Player winner = game.checkWinner();
+        boolean winner = game.checkWinner();
 
         assertEquals(winner,playerO);
     }
@@ -64,7 +64,7 @@ public class OXTest {
         game.playerActs(playerX,5);
         game.playerActs(playerO,9);
 
-        Player winner = game.checkWinner();
+        boolean winner = game.checkWinner();
 
         assertNull(winner);
     }
