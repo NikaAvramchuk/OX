@@ -15,7 +15,7 @@ public class OXTest {
 
     @Test
     public void shouldCreateCertainSizeBoard() {
-        assertEquals(board.grid.length, 9);
+        assertEquals(board.length(), 9);
     }
 
     @Test (priority = 1)
@@ -31,7 +31,7 @@ public class OXTest {
     public void playerXChoosesSlot() {
         board.updateGrid(playerX, 5);
 
-        assertEquals(board.grid[4], playerX.name);
+        assertEquals(board.getValueOnGivenSlot(4), playerX.name);
     }
 
     @Test
@@ -62,5 +62,23 @@ public class OXTest {
         board.updateGrid(playerO,9);
         Player winner = game.checkWinner(board);
         assertNull(winner);
+    }
+
+    @Test
+    public void shouldReturnTrueIfThereIsDraw() {
+        Board board = new Board(9);
+        board.updateGrid(playerO,1);
+        board.updateGrid(playerO, 2);
+        board.updateGrid(playerX, 3);
+        board.updateGrid(playerX, 4);
+        board.updateGrid(playerX, 5);
+        board.updateGrid(playerO, 6);
+        board.updateGrid(playerO, 7);
+        board.updateGrid(playerX, 8);
+        board.updateGrid(playerX, 9);
+
+        boolean draw = game.checkDraw(board);
+
+        assertTrue(draw);
     }
 }
