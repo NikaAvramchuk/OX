@@ -12,22 +12,31 @@ public class Board {
 
     public String image() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (char c : grid) {
-            stringBuilder.append(c);
-            if (c % 3 == 0)
+        for(int i=0; i<grid.length; i++) {
+            if(i%3==0)
                 stringBuilder.append("\n");
-            else
-                stringBuilder.append(" ");
+            stringBuilder.append(grid[i]).append(" ");
         }
         return stringBuilder.toString();
     }
 
     public void updateGrid(Player player, int chosenSlot) {
-        grid[chosenSlot-1] = player.name;
+        if(!isOccupied(chosenSlot-1)) {
+            grid[chosenSlot-1] = player.name;
+        }
     }
 
     public boolean isOccupied(int slot) {
         return grid[slot]=='X' || grid[slot]=='O';
+    }
+
+    public boolean allSlotsAreOccupied() {
+        for (char slot: grid)
+            if(slot!='X' && slot!='O')
+                return false;
+
+        return true;
+
     }
 
     public char getValueOnGivenSlot(int slot) {

@@ -4,12 +4,11 @@ import static com.epam.academy.ox.Combination.winningCombinations;
 
 public class Game {
     private final UI ui;
-    private Player[] players;
+    private final Player[] players;
     private final Player playerX;
     private final Player playerO;
     private final Board board;
     private Player winner;
-    private boolean gameOver;
 
     public Game() {
         ui = new UiImplementation();
@@ -32,7 +31,7 @@ public class Game {
                     break;
                 }
                 else if(checkDraw()) {
-                    ui.showMessage("There is a draw! Game over");;
+                    ui.showMessage("There is a draw! Game over");
                     break;
                 }
             }
@@ -59,13 +58,7 @@ public class Game {
     }
 
     public boolean checkDraw() {
-        for(int i=0; i<9; i++)
-            if(!board.isOccupied(i))
-                break;
-            else if(i==8)
-                return true;
-
-        return false;
+        return board.allSlotsAreOccupied();
     }
 
     public Board getBoard() {
@@ -87,7 +80,7 @@ public class Game {
 
 
     public void welcomeMessage () {
-        ui.showMessage("Hey there! Welcome to 3X3 Tic Tac Toe game!%n");
+        ui.showMessage("Hey there! Welcome to 3X3 Tic Tac Toe game!");
         board.prints();
     }
 }

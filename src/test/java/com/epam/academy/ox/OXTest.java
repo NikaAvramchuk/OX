@@ -28,7 +28,7 @@ public class OXTest {
     @Test
     public void playerXChoosesSlot() {
         Game game = new Game();
-        game.getBoard().updateGrid(playerX, 5);
+        game.playerActs(playerX, 5);
 
         assertEquals(game.getValueOnGivenSlot(4), playerX.name);
     }
@@ -112,5 +112,17 @@ public class OXTest {
         game.playerActs(playerO,9);
 
         assertTrue(game.isOver());
+    }
+
+    @Test
+    public void playerCantChooseBookedSlot() {
+        Game game = new Game();
+        game.playerActs(playerO,1);
+        game.playerActs(playerX,1);
+
+        char valueOnGivenSlot = game.getValueOnGivenSlot(0);
+
+        assertEquals(valueOnGivenSlot, 'O');
+
     }
 }
