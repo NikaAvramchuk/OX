@@ -1,7 +1,7 @@
 package com.epam.academy.ox;
 
 public class Board {
-    public char[] grid;
+    private final char[] grid;
 
     public Board(int size) {
         grid = new char[size];
@@ -24,5 +24,17 @@ public class Board {
 
     public void updateGrid(Player player, int chosenSlot) {
         grid[chosenSlot-1] = player.name;
+    }
+
+    public boolean isOccupied(int slot) {
+        return grid[slot]=='X' || grid[slot]=='O';
+    }
+
+    public char getValueOnGivenSlot(int slot) {
+        return grid[slot];
+    }
+
+    public int length() {
+        return grid.length;
     }
 }
