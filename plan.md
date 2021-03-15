@@ -3,7 +3,8 @@ get the board image DONE
 create players DONE
 player choose the slot number DONE
 board is updating DONE
-check if isWinner
+check if isWinner DONE
+check if draw
 print the board
 Field "grid" should be private
 player can't choose the slot occupied by another player
