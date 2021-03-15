@@ -13,10 +13,12 @@ public class Board {
     public String image() {
         StringBuilder stringBuilder = new StringBuilder();
         for(int i=0; i<grid.length; i++) {
-            if(i%3==0)
-                stringBuilder.append("\n");
-            stringBuilder.append(grid[i]).append(" ");
+            if(i%3==0) {
+                stringBuilder.append("\n-------------\n").append("| ");
+            }
+            stringBuilder.append(grid[i]).append(" | ");
         }
+        stringBuilder.append("\n-------------\n");
         return stringBuilder.toString();
     }
 
