@@ -15,7 +15,7 @@ public class OXTest {
         assertEquals(game.getBoard().length(), 9);
     }
 
-    @Test ()
+    @Test
     public void shouldPrintBoardCorrectly() {
         Game game = new Game();
         String expected = "1 2 3\n4 5 6\n7 8 9\n";
@@ -25,12 +25,12 @@ public class OXTest {
         assertEquals(image,expected);
     }
 
-    @Test (priority = 2)
+    @Test
     public void playerXChoosesSlot() {
         Game game = new Game();
         game.getBoard().updateGrid(playerX, 5);
 
-        assertEquals(game.getBoard().getValueOnGivenSlot(4), playerX.name);
+        assertEquals(game.getValueOnGivenSlot(4), playerX.name);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class OXTest {
     }
 
     @Test
-    public void shouldReturnWinnerY() {
+    public void shouldReturnWinnerO() {
         Game game = new Game();
         game.playerActs(playerO,1);
         game.playerActs(playerO,5);
@@ -87,8 +87,30 @@ public class OXTest {
         assertTrue(draw);
     }
 
-    public void gameShouldBeGoingOnToTheEnd() {
+    @Test
+    public void gameShouldEndWhenDrawIs() {
         Game game = new Game();
+        game.playerActs(playerO,1);
+        game.playerActs(playerO, 2);
+        game.playerActs(playerX, 3);
+        game.playerActs(playerX, 4);
+        game.playerActs(playerX, 5);
+        game.playerActs(playerO, 6);
+        game.playerActs(playerO, 7);
+        game.playerActs(playerX, 8);
+        game.playerActs(playerX, 9);
 
+        assertTrue(game.isOver());
+
+    }
+
+    @Test
+    public void gameShouldEndWhenWinnerIs() {
+        Game game = new Game();
+        game.playerActs(playerO,1);
+        game.playerActs(playerO,5);
+        game.playerActs(playerO,9);
+
+        assertTrue(game.isOver());
     }
 }

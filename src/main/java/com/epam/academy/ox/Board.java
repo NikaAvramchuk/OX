@@ -37,4 +37,8 @@ public class Board {
     public int length() {
         return grid.length;
     }
+
+    public void prints() {
+        System.out.println(image());
+    }
 }
