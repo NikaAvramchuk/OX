@@ -22,7 +22,7 @@ public class Board {
         return stringBuilder.toString();
     }
 
-    public void updateGrid(int chosenSlot) {
-        grid[chosenSlot-1] = 'X';
+    public void updateGrid(Player player, int chosenSlot) {
+        grid[chosenSlot-1] = player.name;
     }
 }
