@@ -6,13 +6,17 @@ import static org.testng.Assert.*;
 
 public class OXTest {
     Board board = new Board(9);
+    Game game = new Game();
+    Player playerX = new Player('X');
+    Player playerY = new Player('Y');
+
 
     @Test
     public void shouldCreateCertainSizeBoard() {
         assertEquals(board.grid.length, 9);
     }
 
-    @Test
+    @Test (priority = 1)
     public void shouldPrintBoardCorrectly() {
         String expected = "1 2 3\n4 5 6\n7 8 9\n";
 
@@ -21,14 +25,19 @@ public class OXTest {
         assertEquals(image,expected);
     }
 
-    @Test
-    public void playerChoosesSlot() {
-        Player player = new Player('X');
+    @Test (priority = 2)
+    public void playerXChoosesSlot() {
+        board.updateGrid(playerX, 5);
 
-        int chosenSlot = player.chooseSlot();
-        board.updateGrid(chosenSlot);
+        assertEquals(board.grid[4], playerX.name);
+    }
 
-        assertEquals(board.grid[chosenSlot - 1], player.name);
-
+    @Test (priority = 3)
+    public void shouldReturnWinner() {
+        board.updateGrid(playerX,1);
+        board.updateGrid(playerX,2);
+        board.updateGrid(playerX,3);
+        Player winner = game.checkWinner();
+        assertEquals(playerX,winner);
     }
 }
