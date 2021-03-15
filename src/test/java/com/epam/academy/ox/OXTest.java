@@ -2,13 +2,15 @@ package com.epam.academy.ox;
 
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 import static org.testng.Assert.*;
 
 public class OXTest {
     Board board = new Board(9);
     Game game = new Game();
     Player playerX = new Player('X');
-    Player playerY = new Player('Y');
+    Player playerO = new Player('O');
 
 
     @Test
@@ -32,12 +34,33 @@ public class OXTest {
         assertEquals(board.grid[4], playerX.name);
     }
 
-    @Test (priority = 3)
-    public void shouldReturnWinner() {
+    @Test
+    public void shouldReturnWinnerX() {
+        Board board = new Board(9);
         board.updateGrid(playerX,1);
         board.updateGrid(playerX,2);
         board.updateGrid(playerX,3);
-        Player winner = game.checkWinner();
-        assertEquals(playerX,winner);
+        Player winner = game.checkWinner(board);
+        assertEquals(winner,playerX);
+    }
+
+    @Test
+    public void shouldReturnWinnerY() {
+        Board board = new Board(9);
+        board.updateGrid(playerO,1);
+        board.updateGrid(playerO,5);
+        board.updateGrid(playerO,9);
+        Player winner = game.checkWinner(board);
+        assertEquals(winner,playerO);
+    }
+
+    @Test
+    public void shouldReturnNullIfThereISNoWinner() {
+        Board board = new Board(9);
+        board.updateGrid(playerO,1);
+        board.updateGrid(playerX,5);
+        board.updateGrid(playerO,9);
+        Player winner = game.checkWinner(board);
+        assertNull(winner);
     }
 }
