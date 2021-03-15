@@ -1,12 +1,23 @@
 package com.epam.academy.ox;
 
+import java.util.Scanner;
+
 import static com.epam.academy.ox.Combination.winningCombinations;
 
 public class Game {
-    private final Player playerX = new Player('X');
-    private final Player playerO = new Player('O');
+    private final Player playerX;
+    private final Player playerO;
+    private final Board board;
+    private final Scanner scanner;
 
-    public Player checkWinner(Board board) {
+    public Game() {
+        playerX = new Player('X');
+        playerO = new Player('O');
+        board = new Board(9);
+        scanner = new Scanner(System.in);
+    }
+
+    public Player checkWinner() {
         StringBuilder result = new StringBuilder();
         for (int[] winningCombination : winningCombinations) {
             for (int i : winningCombination)
@@ -20,7 +31,7 @@ public class Game {
         return null;
     }
 
-    public boolean checkDraw(Board board) {
+    public boolean checkDraw() {
         for(int i=0; i<9; i++)
             if(!board.isOccupied(i))
                 break;
@@ -28,5 +39,13 @@ public class Game {
                 return true;
 
         return false;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void playerActs(Player player, int slot) {
+        board.updateGrid(player,slot);
     }
 }
