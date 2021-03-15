@@ -1,5 +1,7 @@
 package com.epam.academy.ox;
 
+import java.util.Objects;
+
 public class Player {
     char name;
 
@@ -7,7 +9,16 @@ public class Player {
         this.name = name;
     }
 
-    public int chooseSlot() {
-        return 5;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return name == player.name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
