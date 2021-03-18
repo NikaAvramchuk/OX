@@ -1,5 +1,8 @@
 package com.epam.academy.ox;
 
+/**
+ * Holds all possible winning combinations on the 3X3 {@link Board}.
+ */
 public class Combination {
     static int[][] winningCombinations = new int[][] {
             {0,1,2},

@@ -11,23 +11,13 @@ public class OXTest {
 
     @Test
     public void shouldCreateCertainSizeBoard() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         assertEquals(game.getBoard().length(), 9);
     }
 
     @Test
-    public void shouldPrintBoardCorrectly() {
-        Game game = new Game();
-        String expected = "1 2 3\n4 5 6\n7 8 9\n";
-
-        String image = game.getBoard().image();
-
-        assertEquals(image,expected);
-    }
-
-    @Test
     public void playerXChoosesSlot() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         game.playerActs(playerX, 5);
 
         assertEquals(game.getValueOnGivenSlot(4), playerX.name);
@@ -35,43 +25,32 @@ public class OXTest {
 
     @Test
     public void shouldReturnWinnerX() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         game.playerActs(playerX,1);
         game.playerActs(playerX,2);
         game.playerActs(playerX,3);
 
         boolean winner = game.checkWinner();
 
-        assertEquals(winner,playerX);
+        assertTrue(winner);
     }
 
-    @Test
-    public void shouldReturnWinnerO() {
-        Game game = new Game();
-        game.playerActs(playerO,1);
-        game.playerActs(playerO,5);
-        game.playerActs(playerO,9);
-
-        boolean winner = game.checkWinner();
-
-        assertEquals(winner,playerO);
-    }
 
     @Test
     public void shouldReturnNullIfThereISNoWinner() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         game.playerActs(playerO,1);
         game.playerActs(playerX,5);
         game.playerActs(playerO,9);
 
         boolean winner = game.checkWinner();
 
-        assertNull(winner);
+        assertFalse(winner);
     }
 
     @Test
     public void shouldReturnTrueIfThereIsDraw() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         game.playerActs(playerO,1);
         game.playerActs(playerO, 2);
         game.playerActs(playerX, 3);
@@ -89,7 +68,7 @@ public class OXTest {
 
     @Test
     public void gameShouldEndWhenDrawIs() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         game.playerActs(playerO,1);
         game.playerActs(playerO, 2);
         game.playerActs(playerX, 3);
@@ -106,7 +85,7 @@ public class OXTest {
 
     @Test
     public void gameShouldEndWhenWinnerIs() {
-        Game game = new Game();
+        OXGame game = new OXGame();
         game.playerActs(playerO,1);
         game.playerActs(playerO,5);
         game.playerActs(playerO,9);
@@ -115,14 +94,13 @@ public class OXTest {
     }
 
     @Test
-    public void playerCantChooseBookedSlot() {
-        Game game = new Game();
+    public void playerChooseBookedSlot() {
+        OXGame game = new OXGame();
         game.playerActs(playerO,1);
         game.playerActs(playerX,1);
 
         char valueOnGivenSlot = game.getValueOnGivenSlot(0);
 
         assertEquals(valueOnGivenSlot, 'O');
-
     }
 }

@@ -3,6 +3,9 @@ package com.epam.academy.ox;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Implementations of the {@link UI} interface.
+ */
 public class UiImplementation implements UI {
     private final Scanner scanner = new Scanner(System.in);
 

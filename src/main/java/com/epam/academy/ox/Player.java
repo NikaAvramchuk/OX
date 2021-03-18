@@ -2,6 +2,10 @@ package com.epam.academy.ox;
 
 import java.util.Objects;
 
+/**
+ * Represents the player in the OX game.
+ * {@link #name} could be X or O
+ */
 public class Player {
     char name;
 
