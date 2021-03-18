@@ -1,1 +1,1 @@
-# OX
+OX Game (also known as "Tic-tac-toe" or "Tic Tac Toe" or "Noughts and crosses" or "Xs and Os) is a game for two players, X and O, who take turns making the spaces in a 3x3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical or diagonal row wins the game.
